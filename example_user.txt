@@ -1,0 +1,53 @@
+class User
+  #creates Get/Set for these inst vars
+  attr_accessor :name, :email
+  
+  def initialize ()
+    puts "calling initialize on " + self.class.to_s
+  end
+  
+  #init user object by calling init
+  # W/ hash arg! @name = hashes :name value
+  # def initialize (attributes = {})
+    # @name = attributes[:name]
+    # @email = attributes[:email]
+  # end
+#   
+  def formatted_email
+    "#{@name} <#{@email}>"
+  end
+  
+end
+
+user = User.new
+
+class User
+   #init user object by calling init
+  # W/ hash arg! @name = hashes :name value
+  def initialize (attributes = {})
+    @name = attributes[:name]
+    @email = attributes[:email]
+    puts "Calling new initialize!"
+  end
+end
+
+user = User.new({name:"Kyle", email: "kylemorton@gmail.com"})
+puts "#{user.name} + #{user.email}"
+
+class Rectangle  
+  def initialize(*args)  
+    if args.size < 2  || args.size > 3  
+      # modify this to raise exception, later  
+      puts 'This method takes either 2 or 3 arguments'  
+    else  
+      if args.size == 2  
+        puts 'Two arguments'  
+        puts args[0][1]
+      else  
+        puts 'Three arguments'  
+      end  
+    end  
+  end  
+end  
+Rectangle.new([10, 23], 4, 10)  
+Rectangle.new([10, 23], [14, 13])  
