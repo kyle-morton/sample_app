@@ -1,26 +1,35 @@
-<!-- Layout file allows for MUCH less duplication in views
-	 Views follow this simple structure and have access to style sheet, etc -->
 <!DOCTYPE html>
 <html>
-	<head>
-		
-		<!-- Now all views get their title according to the title var in the view -->
-		
-		<!-- OLD VERSION (PRE HELPER) -->
-		<!-- <title><%= yield(:title) %> | Ruby on Rails Tutorial Sample App</title> -->
-		
-		<!-- New version (Custom helper) = use the helper itself to decide on vertical bar -->
-		<title><%= full_title(yield(:title)) %></title>
-		
-		<!-- retrieves app.css from /assets/-->
-		<%= stylesheet_link_tag    'application', media: 'all', 
-		'data-turbolinks-track' => true %>
-		
-		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-		<%= csrf_meta_tags %>
-	</head>
-	<body>
-		<!-- Actual view html goes here! (home gets placed here, help, about, etc) -->
-		<%= yield %>
-	</body>
+  <head>
+    <title><%= full_title(yield(:title)) %></title>
+    <%= stylesheet_link_tag 'application', media: 'all',
+                                           'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    
+    <!-- IE only tag, if less than version 9 won't have HTML5 shim -->
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
+      </script>
+    <![endif]-->
+  </head>
+  <body>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <%= link_to "sample app", '#', id: "logo" %>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "Home",   '#' %></li>
+            <li><%= link_to "Help",   '#' %></li>
+            <li><%= link_to "Log in", '#' %></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    
+    <!-- Actual body of view goes here in the container -->
+    <div class="container">
+      <%= yield %>
+    </div>
+  </body>
 </html>
